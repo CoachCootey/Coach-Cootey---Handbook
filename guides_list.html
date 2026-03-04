@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Tactical Guides — Coach Steven Cootey</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--dark:#0D1B2A;--card:#142233;--border:#1E3A50;--atk:#3DDC84;--mid:#4FC3F7;--def:#FF7043;--ylw:#FFD166;--light:#E8F4F0;--muted:#9BBCB0;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{background:var(--dark);color:var(--light);font-family:'Barlow',sans-serif;width:100%;height:100%;overflow:hidden;}
+  .scaler{position:absolute;top:0;left:0;transform-origin:top left;}
+  .page{width:1200px;height:625px;background:var(--dark);display:flex;flex-direction:column;}
+  .accent-bar{height:6px;flex-shrink:0;}
+  .header{padding:5px 20px 4px;border-bottom:1px solid var(--border);flex-shrink:0;}
+  .htr{display:flex;justify-content:space-between;align-items:center;}
+  .hmeta{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;}
+  .hmeta strong{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;color:var(--light);}
+  .hright{display:flex;align-items:center;gap:6px;}
+  .htitle{display:flex;align-items:baseline;gap:10px;margin-top:1px;line-height:1;}
+  .ht{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:30px;color:var(--light);}
+  .ha{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:30px;}
+  .hsub{font-size:10px;color:var(--muted);margin-top:1px;}
+  .btn-home{display:inline-flex;align-items:center;gap:4px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.8px;text-transform:uppercase;text-decoration:none;color:#0D1B2A;background:#FFD166;padding:2px 10px;border-radius:3px;}
+  a:visited{color:inherit;}
+  .body{flex:1;min-height:0;overflow:hidden;position:relative;display:flex;}
+  .rows{display:flex;flex-direction:column;gap:4px;padding:8px 355px 6px 16px;position:relative;z-index:2;flex:1;}
+  .row{display:flex;align-items:stretch;background:var(--card);border:1px solid var(--border);border-radius:6px;overflow:hidden;text-decoration:none;color:var(--light);flex-shrink:0;cursor:pointer;transition:border-color 0.15s,transform 0.12s;}
+  .row:hover{border-color:rgba(255,255,255,0.2);transform:translateX(3px);}
+  .row *{pointer-events:none;}
+  .row{pointer-events:auto;}
+  .row-bar{width:5px;flex-shrink:0;}
+  .row-num{width:52px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:18px;border-right:1px solid var(--border);}
+  .row-body{flex:1;padding:5px 12px;display:flex;flex-direction:column;gap:2px;min-width:0;}
+  .row-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;line-height:1;}
+  .row-sub{font-size:9px;color:var(--muted);line-height:1.3;}
+  .row-tags{display:flex;gap:4px;flex-wrap:nowrap;overflow:hidden;margin-top:2px;}
+  .tag{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8.5px;letter-spacing:0.5px;padding:2px 7px;border-radius:2px;border:1px solid;white-space:nowrap;}
+  .row-arr{width:32px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:20px;opacity:0.3;transition:opacity 0.15s;}
+  .row:hover .row-arr{opacity:0.8;}
+  .pitch-right{position:absolute;top:0;right:0;width:340px;bottom:0;overflow:hidden;}
+  .banner{display:grid;background:var(--card);border:1px solid var(--border);border-radius:5px;margin:0 14px 4px;}
+  .bi{padding:4px 6px;text-align:center;border-right:1px solid var(--border);}
+  .bi:last-child{border-right:none;}
+  .bm{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:13px;}
+  .bs{font-size:7px;color:var(--muted);text-transform:uppercase;letter-spacing:0.3px;margin-top:1px;}
+  .footer{text-align:right;padding:2px 20px;font-size:8.5px;color:var(--muted);letter-spacing:1px;flex-shrink:0;}
+</style></head>
+<body><div class="scaler" id="scaler"><div class="page" id="page">
+  <div class="accent-bar" style="background:var(--mid)"></div>
+  <div class="header">
+    <div class="htr">
+      <div class="hmeta">TACTICAL GUIDES &nbsp;—&nbsp; <strong>Coach Steven Cootey</strong></div>
+      <div class="hright"><a href="index.html" class="btn-home">&#8249; HOME</a></div>
+    </div>
+    <div class="htitle"><span class="ht">TACTICAL</span><span class="ha" style="color:var(--mid)">GUIDES</span></div>
+    <div class="hsub">7 guides covering how we play, defend, react, and support. Tap any guide to open it.</div>
+  </div>
+  <div class="body">
+    <div class="rows"><a class="row" href="three_thirds_interactive.html" onclick="window.location='three_thirds_interactive.html';return true;">
+  <div class="row-bar" style="background:#3DDC84"></div>
+  <div class="row-num" style="color:#3DDC84">1</div>
+  <div class="row-body">
+    <div class="row-title" style="color:#3DDC84">The Three Thirds</div>
+    <div class="row-sub">How your decision-making changes based on where you are on the field.</div>
+    <div class="row-tags"><span class="tag" style="color:#3DDC84;border-color:#3DDC84;background:rgba(61,220,132,0.1)">ATTACKING</span><span class="tag" style="color:#4FC3F7;border-color:#4FC3F7;background:rgba(79,195,247,0.1)">MIDDLE</span><span class="tag" style="color:#FF7043;border-color:#FF7043;background:rgba(255,112,67,0.1)">DEFENDING</span></div>
+  </div>
+  <div class="row-arr">›</div>
+</a>
+<a class="row" href="channels_ip_interactive.html" onclick="window.location='channels_ip_interactive.html';return true;">
+  <div class="row-bar" style="background:#4FC3F7"></div>
+  <div class="row-num" style="color:#4FC3F7">2</div>
+  <div class="row-body">
+    <div class="row-title" style="color:#4FC3F7">5 Channels — In Possession</div>
+    <div class="row-sub">Stretch the defense, create space, and attack with purpose using all 5 channels.</div>
+    <div class="row-tags"><span class="tag" style="color:#4FC3F7;border-color:#4FC3F7;background:rgba(79,195,247,0.1)">WIDTH</span><span class="tag" style="color:#3DDC84;border-color:#3DDC84;background:rgba(61,220,132,0.1)">HALF-SPACE</span><span class="tag" style="color:#FFD166;border-color:#FFD166;background:rgba(255,209,102,0.1)">CENTRAL</span><span class="tag" style="color:#4FC3F7;border-color:#4FC3F7;background:rgba(79,195,247,0.1)">OVERLOADS</span></div>
+  </div>
+  <div class="row-arr">›</div>
+</a>
+<a class="row" href="channels_oop_interactive.html" onclick="window.location='channels_oop_interactive.html';return true;">
+  <div class="row-bar" style="background:#FF7043"></div>
+  <div class="row-num" style="color:#FF7043">3</div>
+  <div class="row-body">
+    <div class="row-title" style="color:#FF7043">5 Channels — Out of Possession</div>
+    <div class="row-sub">Defend 3 connected channels, stay compact, and make play predictable.</div>
+    <div class="row-tags"><span class="tag" style="color:#FF7043;border-color:#FF7043;background:rgba(255,112,67,0.1)">DELAY</span><span class="tag" style="color:#FF7043;border-color:#FF7043;background:rgba(255,112,67,0.1)">DENY</span><span class="tag" style="color:#FF7043;border-color:#FF7043;background:rgba(255,112,67,0.1)">DEFEND</span><span class="tag" style="color:#4FC3F7;border-color:#4FC3F7;background:rgba(79,195,247,0.1)">COMPACT</span></div>
+  </div>
+  <div class="row-arr">›</div>
+</a>
+<a class="row" href="transitions_interactive.html" onclick="window.location='transitions_interactive.html';return true;">
+  <div class="row-bar" style="background:#FFD166"></div>
+  <div class="row-num" style="color:#FFD166">4</div>
+  <div class="row-body">
+    <div class="row-title" style="color:#FFD166">Transitions</div>
+    <div class="row-sub">React in the moments the game changes — positive and negative transitions.</div>
+    <div class="row-tags"><span class="tag" style="color:#FFD166;border-color:#FFD166;background:rgba(255,209,102,0.1)">5-SECOND RULE</span><span class="tag" style="color:#3DDC84;border-color:#3DDC84;background:rgba(61,220,132,0.1)">COUNTER ATTACK</span><span class="tag" style="color:#FF7043;border-color:#FF7043;background:rgba(255,112,67,0.1)">RECOVER SHAPE</span></div>
+  </div>
+  <div class="row-arr">›</div>
+</a>
+<a class="row" href="abds_support_interactive.html" onclick="window.location='abds_support_interactive.html';return true;">
+  <div class="row-bar" style="background:#C77DFF"></div>
+  <div class="row-num" style="color:#C77DFF">5</div>
+  <div class="row-body">
+    <div class="row-title" style="color:#C77DFF">ABD'S of Support</div>
+    <div class="row-sub">Angle, Body shape, Distance, Scanning — the off-ball fundamentals.</div>
+    <div class="row-tags"><span class="tag" style="color:#C77DFF;border-color:#C77DFF;background:rgba(199,125,255,0.1)">ANGLE</span><span class="tag" style="color:#C77DFF;border-color:#C77DFF;background:rgba(199,125,255,0.1)">BODY SHAPE</span><span class="tag" style="color:#C77DFF;border-color:#C77DFF;background:rgba(199,125,255,0.1)">DISTANCE</span><span class="tag" style="color:#C77DFF;border-color:#C77DFF;background:rgba(199,125,255,0.1)">SCANNING</span></div>
+  </div>
+  <div class="row-arr">›</div>
+</a>
+<a class="row" href="four_bs_support_interactive.html" onclick="window.location='four_bs_support_interactive.html';return true;">
+  <div class="row-bar" style="background:#FF7043"></div>
+  <div class="row-num" style="color:#FF7043">6</div>
+  <div class="row-body">
+    <div class="row-title" style="color:#FF7043">The 4 B's of Support</div>
+    <div class="row-sub">Behind, Beside, Between, Beyond — four positions covering every support situation.</div>
+    <div class="row-tags"><span class="tag" style="color:#4FC3F7;border-color:#4FC3F7;background:rgba(79,195,247,0.1)">BEHIND</span><span class="tag" style="color:#3DDC84;border-color:#3DDC84;background:rgba(61,220,132,0.1)">BESIDE</span><span class="tag" style="color:#FF7043;border-color:#FF7043;background:rgba(255,112,67,0.1)">BETWEEN</span><span class="tag" style="color:#C77DFF;border-color:#C77DFF;background:rgba(199,125,255,0.1)">BEYOND</span></div>
+  </div>
+  <div class="row-arr">›</div>
+</a>
+<a class="row" href="how_can_you_help_interactive.html" onclick="window.location='how_can_you_help_interactive.html';return true;">
+  <div class="row-bar" style="background:#4FC3F7"></div>
+  <div class="row-num" style="color:#4FC3F7">7</div>
+  <div class="row-body">
+    <div class="row-title" style="color:#4FC3F7">How Can You Help?</div>
+    <div class="row-sub">With or without the ball — never watch, always help attack, defend, support, and spread.</div>
+    <div class="row-tags"><span class="tag" style="color:#3DDC84;border-color:#3DDC84;background:rgba(61,220,132,0.1)">ATTACK</span><span class="tag" style="color:#4FC3F7;border-color:#4FC3F7;background:rgba(79,195,247,0.1)">SUPPORT</span><span class="tag" style="color:#FF7043;border-color:#FF7043;background:rgba(255,112,67,0.1)">DEFEND</span><span class="tag" style="color:#FFD166;border-color:#FFD166;background:rgba(255,209,102,0.1)">SPREAD OUT</span></div>
+  </div>
+  <div class="row-arr">›</div>
+</a></div>
+    <div class="pitch-right"><svg viewBox="0 0 340 500" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" style="position:absolute;inset:0;width:100%;height:100%;">
+  <defs>
+    <linearGradient id="rFade" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="rgba(13,27,42,1)"/>
+      <stop offset="22%" stop-color="rgba(13,27,42,0.9)"/>
+      <stop offset="42%" stop-color="rgba(13,27,42,0)"/>
+      <stop offset="100%" stop-color="rgba(13,27,42,0)"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="340" height="500" fill="#1A3C2E"/>
+  <rect x="0" y="0"            width="340" height="62" fill="#1E4434"/>
+  <rect x="0" y="125" width="340" height="62" fill="#1E4434"/>
+  <rect x="0" y="250" width="340" height="62" fill="#1E4434"/>
+  <rect x="0" y="375" width="340" height="62" fill="#1E4434"/>
+  <rect x="8" y="8" width="324" height="484" fill="none" stroke="#3A7A5C" stroke-width="1.5"/>
+  <line x1="8" y1="250" x2="332" y2="250" stroke="#3A7A5C" stroke-width="1"/>
+  <circle cx="170" cy="250" r="43" fill="none" stroke="#3A7A5C" stroke-width="1"/>
+  <circle cx="170" cy="250" r="2.5" fill="#3A7A5C"/>
+  <rect x="53" y="8" width="233" height="82" fill="none" stroke="#3A7A5C" stroke-width="1"/>
+  <rect x="108" y="8" width="123" height="33" fill="none" stroke="#3A7A5C" stroke-width="1"/>
+  <circle cx="170" cy="58" r="2" fill="#3A7A5C"/>
+  <rect x="53" y="410" width="233" height="82" fill="none" stroke="#3A7A5C" stroke-width="1"/>
+  <rect x="108" y="459" width="123" height="33" fill="none" stroke="#3A7A5C" stroke-width="1"/>
+  <circle cx="170" cy="442" r="2" fill="#3A7A5C"/>
+  <line x1="72" y1="8" x2="72" y2="492" stroke="#3A7A5C" stroke-width="0.8" stroke-dasharray="4,5" opacity="0.5"/><line x1="136" y1="8" x2="136" y2="492" stroke="#3A7A5C" stroke-width="0.8" stroke-dasharray="4,5" opacity="0.5"/><line x1="200" y1="8" x2="200" y2="492" stroke="#3A7A5C" stroke-width="0.8" stroke-dasharray="4,5" opacity="0.5"/><line x1="264" y1="8" x2="264" y2="492" stroke="#3A7A5C" stroke-width="0.8" stroke-dasharray="4,5" opacity="0.5"/>
+  <rect x="8" y="8"              width="324" height="159" fill="rgba(61,220,132,0.07)"/>
+  <rect x="8" y="167" width="324" height="164" fill="rgba(79,195,247,0.04)"/>
+  <rect x="8" y="332" width="324" height="159" fill="rgba(255,112,67,0.07)"/>
+  <rect x="0" y="0" width="340" height="500" fill="url(#rFade)"/>
+</svg></div>
+  </div>
+  <div class="banner" style="grid-template-columns:repeat(7,1fr);"><div class="bi"><div class="bm" style="color:#3DDC84">THREE THIRDS</div><div class="bs">Know the Field</div></div><div class="bi"><div class="bm" style="color:#4FC3F7">5 CHANNELS IP</div><div class="bs">In Possession</div></div><div class="bi"><div class="bm" style="color:#FF7043">5 CHANNELS OOP</div><div class="bs">Out of Possession</div></div><div class="bi"><div class="bm" style="color:#FFD166">TRANSITIONS</div><div class="bs">React in 5s</div></div><div class="bi"><div class="bm" style="color:#C77DFF">ABD'S</div><div class="bs">Angle · Body · Distance</div></div><div class="bi"><div class="bm" style="color:#FF7043">4 B'S</div><div class="bs">Behind · Beside · Beyond</div></div><div class="bi"><div class="bm" style="color:#4FC3F7">HOW CAN YOU HELP</div><div class="bs">Never Watch</div></div></div>
+  <div class="footer">TACTICAL GUIDES &nbsp;·&nbsp; COACH STEVEN COOTEY &nbsp;·&nbsp; 7 GUIDES</div>
+</div></div><script>
+function scaleToFit(){
+  const s=document.getElementById('scaler');
+  const sw=window.innerWidth,sh=window.innerHeight,pw=1200,ph=625;
+  const sc=Math.min(sw/pw,sh/ph);
+  s.style.width=pw+'px';s.style.height=ph+'px';
+  s.style.transform='scale('+sc+')';
+  s.style.left=((sw-pw*sc)/2)+'px';s.style.top='0px';
+  document.body.style.height=(ph*sc)+'px';
+}
+window.addEventListener('resize',scaleToFit);
+window.addEventListener('load',scaleToFit);
+</script></body></html>

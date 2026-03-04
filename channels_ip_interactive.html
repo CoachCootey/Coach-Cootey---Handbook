@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THE 5 CHANNELS — In Possession — Coach Steven Cootey</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --dark:    #0D1B2A;
+    --card:    #142233;
+    --border:  #1E3A50;
+    --atk:     #3DDC84;
+    --mid:     #4FC3F7;
+    --def:     #FF7043;
+    --ylw:     #FFD166;
+    --light:   #E8F4F0;
+    --muted:   #9BBCB0;
+    --pitch:   #1A3C2E;
+    --pitch2:  #1E4434;
+    --pitchln: #2E6B50;
+    --scale: 1;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body {
+    background: var(--dark); color: var(--light);
+    font-family: 'Barlow', sans-serif;
+    width: 100%; height: 100%; overflow: hidden;
+  }
+
+  /* Scale wrapper — JS sets --scale on this */
+  .scaler {
+    position: absolute;
+    top: 0; left: 0;
+    transform-origin: top left;
+    transform: scale(var(--scale));
+  }
+
+  /* Fixed design canvas: 960 × 620 */
+  .page {
+    width: 1200px;
+    background: var(--dark);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .accent-bar { height: 6px; background: #4FC3F7; flex-shrink: 0; }
+
+  /* Header */
+  .header { padding: 5px 20px 4px; border-bottom: 1px solid var(--border); }
+  .header-top-row { display: flex; justify-content: space-between; align-items: center; }
+  .header-tip-inline {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 13px; color: var(--dark); background: var(--ylw);
+    padding: 3px 10px; border-radius: 4px; letter-spacing: 0.8px;
+    text-transform: uppercase; display: flex; align-items: center; gap: 6px;
+  }
+  .header-tip-inline::before { content: "👆"; font-size: 14px; }
+  .header-meta { font-size: 10px; color: var(--muted); }
+  .header-meta strong { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 14px; color: var(--light); }
+  .header-meta span { color: var(--ylw); }
+  .header-title-row { display: flex; align-items: baseline; gap: 10px; margin-top: 1px; line-height: 1; }
+  .h-title  { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 30px; color: var(--light); }
+  .h-accent { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 36px; color: #4FC3F7; }
+  .header-sub { font-size: 10px; color: var(--muted); margin-top: 1px; }
+
+  /* Body */
+  .body { display: flex; gap: 14px; padding: 6px 14px 5px; }
+
+  /* Pitch */
+  .pitch-col { flex-shrink: 0; align-self: stretch; width: 320px; display: flex; justify-content: center; }
+  .pitch {
+    position: relative; width: 320px; height: 100%;
+    position: relative; background: var(--pitch); border-radius: 6px; overflow: hidden;
+  }
+  .pitch-stripes { position: absolute; inset: 0; display: flex; flex-direction: column; }
+  .stripe { flex: 1; }
+  .stripe:nth-child(odd)  { background: var(--pitch2); }
+  .stripe:nth-child(even) { background: var(--pitch); }
+  .pitch-zone {
+    position: absolute; left: 0; right: 0;
+    cursor: pointer; transition: filter 0.15s;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 2;
+  }
+  .pitch-zone:hover  { filter: brightness(1.35); }
+  .pitch-zone.active { filter: brightness(1.5); }
+  .zone-atk { top:0;      height:33.33%; background:rgba(61,220,132,0.12); }
+  .zone-mid { top:33.33%; height:33.34%; background:rgba(79,195,247,0.09); }
+  .zone-def { top:66.67%; height:33.33%; background:rgba(255,112,67,0.10); }
+  .zone-label-wrap { display: flex; flex-direction: column; align-items: center; gap: 2px; z-index: 2; cursor: pointer; }
+  .zone-sublabel { font-family: 'Barlow', sans-serif; font-size: 10px; font-weight: 500; letter-spacing: 0.5px; opacity: 0.85; }
+  .zone-label {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+    font-size: 26px; letter-spacing: 2px;
+    pointer-events: none;
+  }
+  .pitch-svg { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 1; }
+
+  /* Cards */
+  .cards-col { flex: 1; display: flex; flex-direction: column; gap: 8px; height: 400px; flex-shrink: 0; }
+  .card {
+    flex: 1; min-height: 0; background: var(--card); border-radius: 6px;
+    border: 1px solid var(--border);
+    padding: 6px 12px 6px 16px; position: relative; cursor: pointer;
+    display: flex; flex-direction: column;
+    transition: border-color 0.15s;
+  }
+  .card::before {
+    content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+    width: 4px; border-radius: 6px 0 0 6px;
+  }
+  .card-atk::before { background: #4FC3F7; }
+  .card-mid::before { background: var(--mid); }
+  .card-def::before { background: var(--def); }
+  .card.active { border-color: rgba(255,255,255,0.15); background: rgba(255,255,255,0.03); }
+
+  .card-header-row { display: flex; align-items: center; gap: 8px; margin-bottom: 2px; }
+  .badge {
+    width: 38px; height: 38px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+    font-size: 20px; color: var(--dark); flex-shrink: 0;
+  }
+  .card-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 19px; line-height: 1; }
+  .card-sub   { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+  .divider    { height: 1px; background: var(--border); margin: 3px 0 3px; }
+  .card-body  { font-size: 10.5px; line-height: 1.45; opacity: 0.85; flex: 1; margin-bottom: 3px; }
+
+  /* Tags */
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 600;
+    font-size: 11px; letter-spacing: 0.8px;
+    padding: 4px 11px; border-radius: 3px; border: 1px solid transparent;
+    cursor: pointer; background: none; user-select: none; white-space: nowrap;
+    transition: filter 0.12s, transform 0.1s;
+  }
+  .tag:hover { filter: brightness(1.3); transform: translateY(-1px); }
+
+  /* Tip */
+  .tip {
+    background: var(--card); border: 1px solid var(--ylw);
+    border-radius: 5px; margin: 0 14px 4px; padding: 4px 16px; text-align: center;
+  }
+  .tip-label { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 18px; letter-spacing: 1px; color: var(--ylw); display: inline; margin-right: 10px; }
+  .tip-text  { font-size: 11px; opacity: 0.85; display: inline; }
+
+  /* Banner */
+  .banner {
+    display: grid; grid-template-columns: repeat(3,1fr);
+    background: var(--card); border: 1px solid var(--border);
+    border-radius: 5px; margin: 0 14px 2px;
+  }
+  .banner-item { padding: 5px 10px; text-align: center; border-right: 1px solid var(--border); }
+  .banner-item:last-child { border-right: none; }
+  .banner-main { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 18px; }
+  .banner-sub  { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+
+  /* Footer */
+  .footer { text-align: right; padding: 2px 20px 2px; font-size: 8.5px; color: var(--muted); letter-spacing: 1px; }
+
+  /* Tooltip */
+  .tooltip {
+    position: fixed; z-index: 9999; background: var(--card);
+    border: 1px solid var(--border); border-radius: 8px;
+    padding: 10px 13px; max-width: 240px; font-size: 12px;
+    line-height: 1.5; color: var(--light);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.6);
+    pointer-events: none; opacity: 0; transform: translateY(5px);
+    transition: opacity 0.15s, transform 0.15s;
+  }
+  .tooltip.show { opacity: 1; transform: translateY(0); }
+  .tooltip-name { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 4px; }
+
+  .h-accent { color: #4FC3F7; }
+  .accent-bar { background: #4FC3F7; }
+
+  a:visited { color: inherit; }
+</style>
+</head>
+<body>
+<div class="scaler" id="scaler">
+<div class="page" id="page">
+  <div class="accent-bar"></div>
+  <div class="header">
+    <div class="header-top-row">
+      <div class="header-meta">TACTICAL GUIDE &nbsp;—&nbsp; <strong>Coach Steven Cootey</strong></div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:3px;">
+        <div class="header-tip-inline">Tap a tag for a coaching tip</div>
+        <a href="guides_list.html" style="display:inline-flex;align-items:center;gap:4px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.8px;text-transform:uppercase;text-decoration:none;color:#0D1B2A;background:#FFD166;padding:2px 10px;border-radius:3px;transition:filter 0.15s;" onmouseover="this.style.filter='brightness(1.1)'" onmouseout="this.style.filter=''">&#8249; GUIDES</a>
+      </div>
+    </div>
+    <div class="header-title-row">
+      <span class="h-title">THE 5 CHANNELS</span>
+      <span class="h-accent">— In Possession</span>
+    </div>
+    <div class="header-sub">When we have the ball, we use all 5 channels to create width, open space, and attack with purpose.</div>
+  </div>
+  <div class="body">
+    <div class="pitch-col">
+      <div class="pitch">
+        <div class="pitch-stripes">
+          <div class="stripe"></div><div class="stripe"></div>
+          <div class="stripe"></div><div class="stripe"></div>
+          <div class="stripe"></div><div class="stripe"></div>
+          <div class="stripe"></div><div class="stripe"></div>
+        </div>
+        
+        <div class="pitch-zone" style="top:0;bottom:0;left:0;width:20%;height:100%;background:transparent;" data-zone="wide" onclick="selectZone('wide')"></div>
+        <div class="pitch-zone" style="top:0;bottom:0;left:20%;width:20%;height:100%;background:transparent;" data-zone="half" onclick="selectZone('half')"></div>
+        <div class="pitch-zone" style="top:0;bottom:0;left:40%;width:20%;height:100%;background:transparent;" data-zone="central" onclick="selectZone('central')"></div>
+        <div class="pitch-zone" style="top:0;bottom:0;left:60%;width:20%;height:100%;background:transparent;" data-zone="half" onclick="selectZone('half')"></div>
+        <div class="pitch-zone" style="top:0;bottom:0;left:80%;width:20%;height:100%;background:transparent;" data-zone="wide" onclick="selectZone('wide')"></div>
+        <svg class="pitch-svg" viewBox="0 0 320 400" preserveAspectRatio="xMidYMid meet" style="width:100%;height:100%;position:absolute;top:0;left:0;">
+          <rect x="0" y="0" width="320" height="400" rx="6" fill="#1A3C2E"/>
+          <rect x="0" y="0"   width="320" height="52.5" fill="#1E4434"/>
+          <rect x="0" y="105" width="320" height="52.5" fill="#1E4434"/>
+          <rect x="0" y="210" width="320" height="52.5" fill="#1E4434"/>
+          <rect x="0" y="315" width="320" height="52.5" fill="#1E4434"/>
+          <rect x="0"   y="0" width="64"  height="420" fill="#4FC3F7"    fill-opacity="0.13"/>
+          <rect x="64"  y="0" width="64"  height="420" fill="#3DDC84"    fill-opacity="0.10"/>
+          <rect x="128" y="0" width="64"  height="420" fill="#FFD166" fill-opacity="0.10"/>
+          <rect x="192" y="0" width="64"  height="420" fill="#3DDC84"    fill-opacity="0.10"/>
+          <rect x="256" y="0" width="64"  height="420" fill="#4FC3F7"    fill-opacity="0.13"/>
+          <rect x="8" y="8" width="304" height="384" rx="3" fill="none" stroke="#2E6B50" stroke-width="1.5"/>
+          <line x1="8" y1="210" x2="312" y2="210" stroke="#2E6B50" stroke-width="1.5"/>
+          <circle cx="160" cy="210" r="26" fill="none" stroke="#2E6B50" stroke-width="1.5"/>
+          <circle cx="160" cy="210" r="2.5" fill="#2E6B50"/>
+          <rect x="68" y="8"   width="184" height="42" fill="none" stroke="#2E6B50" stroke-width="1.5"/>
+          <rect x="68" y="350" width="184" height="42" fill="none" stroke="#2E6B50" stroke-width="1.5"/>
+          <rect x="110" y="8"   width="100" height="17" fill="none" stroke="#2E6B50" stroke-width="1.2"/>
+          <rect x="110" y="375" width="100" height="17" fill="none" stroke="#2E6B50" stroke-width="1.2"/>
+          <circle cx="160" cy="37"  r="2" fill="#2E6B50"/>
+          <circle cx="160" cy="383" r="2" fill="#2E6B50"/>
+          <line x1="64"  y1="8" x2="64"  y2="397" stroke="#2E6B50" stroke-width="1.2" stroke-dasharray="4,5"/>
+          <line x1="128" y1="8" x2="128" y2="397" stroke="#2E6B50" stroke-width="1.2" stroke-dasharray="4,5"/>
+          <line x1="192" y1="8" x2="192" y2="397" stroke="#2E6B50" stroke-width="1.2" stroke-dasharray="4,5"/>
+          <line x1="256" y1="8" x2="256" y2="397" stroke="#2E6B50" stroke-width="1.2" stroke-dasharray="4,5"/>
+          <!-- Centered stacked letters -->
+          <text x="32" y="186" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="900" font-size="20" fill="#4FC3F7">W</text>
+          <text x="32" y="208" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="900" font-size="20" fill="#4FC3F7">I</text>
+          <text x="32" y="230" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="900" font-size="20" fill="#4FC3F7">D</text>
+          <text x="32" y="252" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="900" font-size="20" fill="#4FC3F7">E</text>
+          <text x="96" y="186" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="900" font-size="20" fill="#3DDC84">H</text>
+          <text x="96" y="208" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="900" font-size="20" fill="#3DDC84">A</text>
+          <text x="96" y="230" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="900" font-size="20" fill="#3DDC84">L</text>
+          <text x="96" y="252" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="900" font-size="20" fill="#3DDC84">F</text>
+          <text x="160" y="170" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="900" font-size="20" fill="#FFD166">C</text>
+          <text x="160" y="190" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="900" font-size="20" fill="#FFD166">E</text>
+          <text x="160" y="210" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="900" font-size="20" fill="#FFD166">N</text>
+          <text x="160" y="230" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="900" font-size="20" fill="#FFD166">T</text>
+          <text x="160" y="250" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="900" font-size="20" fill="#FFD166">E</text>
+          <text x="160" y="270" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="900" font-size="20" fill="#FFD166">R</text>
+          <text x="224" y="186" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="900" font-size="20" fill="#3DDC84">H</text>
+          <text x="224" y="208" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="900" font-size="20" fill="#3DDC84">A</text>
+          <text x="224" y="230" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="900" font-size="20" fill="#3DDC84">L</text>
+          <text x="224" y="252" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="900" font-size="20" fill="#3DDC84">F</text>
+          <text x="288" y="186" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="900" font-size="20" fill="#4FC3F7">W</text>
+          <text x="288" y="208" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="900" font-size="20" fill="#4FC3F7">I</text>
+          <text x="288" y="230" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="900" font-size="20" fill="#4FC3F7">D</text>
+          <text x="288" y="252" text-anchor="middle" font-family="Barlow Condensed,sans-serif" font-weight="900" font-size="20" fill="#4FC3F7">E</text>
+        </svg>
+      </div>
+    </div>
+    <div class="cards-col">
+      <div class="card" id="card-wide" style="border-left:4px solid #4FC3F7" onclick="selectZone('wide')">
+        <div class="card-header-row">
+          <div class="badge" style="background:#4FC3F7">W</div>
+          <div><div class="card-title" style="color:#4FC3F7">Wide Channels</div><div class="card-sub">Wingers · Fullbacks · Create Width</div></div>
+        </div>
+        <div class="divider"></div>
+        <div class="card-body">Stretch the defense in wide channels. Pull defenders out of position to create space for teammates in the middle. Be attack-minded in 1v1 situations and look to create 2v1 opportunities with overlapping runs.</div>
+        <div class="tags" id="tags-wide"></div>
+      </div>
+      <div class="card" id="card-half" style="border-left:4px solid #3DDC84" onclick="selectZone('half')">
+        <div class="card-header-row">
+          <div class="badge" style="background:#3DDC84">H</div>
+          <div><div class="card-title" style="color:#3DDC84">Half-Spaces</div><div class="card-sub">Forwards · Midfielders · Find Pockets</div></div>
+        </div>
+        <div class="divider"></div>
+        <div class="card-body">Find pockets of space between defenders. The half-space between the fullback and center-back is where danger is created. Combine with teammates, vary your runs, and look to get behind or between the defensive line.</div>
+        <div class="tags" id="tags-half"></div>
+      </div>
+      <div class="card" id="card-central" style="border-left:4px solid #FFD166" onclick="selectZone('central')">
+        <div class="card-header-row">
+          <div class="badge" style="background:#FFD166">C</div>
+          <div><div class="card-title" style="color:#FFD166">Central Channel</div><div class="card-sub">Strikers · Central Mids · Control</div></div>
+        </div>
+        <div class="divider"></div>
+        <div class="card-body">Control the central channel to control the game. It's crowded — use wide play to move defenders, open passing lanes, and unlock the center. The central channel is where you finish attacks, not start them.</div>
+        <div class="tags" id="tags-central"></div>
+      </div>
+    </div>
+  </div>
+  <div class="tip">
+    <span class="tip-label">COACHING TIP</span>
+    <span class="tip-text">Use all 5 channels to stretch the defense, find pockets of space, and create clear chances on goal.</span>
+  </div>
+  <div class="banner">
+    <div class="banner-item">
+      <div class="banner-main" style="color:#4FC3F7">USE 5 CHANNELS</div>
+      <div class="banner-sub">Awareness In Possession</div>
+    </div>
+    <div class="banner-item">
+      <div class="banner-main" style="color:#3DDC84">CREATE WIDTH & SPACE</div>
+      <div class="banner-sub">Stretch the Defense</div>
+    </div>
+    <div class="banner-item">
+      <div class="banner-main" style="color:#FFD166">INTENTIONAL ATTACK</div>
+      <div class="banner-sub">Movement With Purpose</div>
+    </div>
+  </div>
+  <div class="footer">PART 2 OF 4 &nbsp;·&nbsp; TACTICAL GUIDE — COACH STEVEN COOTEY</div>
+</div>
+</div>
+<div class="tooltip" id="tooltip">
+  <div class="tooltip-name" id="tooltip-name"></div>
+  <div id="tooltip-body"></div>
+</div>
+
+<script>
+function scaleToFit() {
+  const scaler = document.getElementById('scaler');
+  const page   = document.getElementById('page');
+  const sw = window.innerWidth;
+  const sh = window.innerHeight;
+  const pw = 1200;
+  const ph = 625;
+  const scale = Math.min(sw / pw, sh / ph);
+  scaler.style.width  = pw + 'px';
+  scaler.style.height = ph + 'px';
+  scaler.style.transform = 'scale(' + scale + ')';
+  scaler.style.left = ((sw - pw * scale) / 2) + 'px';
+  scaler.style.top  = ((sh - ph * scale) / 2) + 'px';
+}
+window.addEventListener('resize', scaleToFit);
+window.addEventListener('load', scaleToFit);
+
+const tt = document.getElementById('tooltip');
+const ttN = document.getElementById('tooltip-name');
+const ttB = document.getElementById('tooltip-body');
+let hideT;
+function showTip(el, label, tip, color) {
+  clearTimeout(hideT);
+  ttN.textContent = label; ttN.style.color = color;
+  ttB.textContent = tip;
+  tt.style.borderColor = color;
+  const r = el.getBoundingClientRect();
+  let left = r.left, top = r.bottom + 8;
+  if (left + 240 > window.innerWidth - 8) left = window.innerWidth - 248;
+  if (top + 120 > window.innerHeight) top = r.top - 130;
+  tt.style.left = left + 'px'; tt.style.top = top + 'px';
+  tt.classList.add('show');
+}
+function startHide() { hideT = setTimeout(() => tt.classList.remove('show'), 180); }
+tt.addEventListener('mouseenter', () => clearTimeout(hideT));
+tt.addEventListener('mouseleave', startHide);
+document.addEventListener('click', () => tt.classList.remove('show'));
+function buildTags(zone, color, tags, tagData) {
+  const container = document.getElementById('tags-' + zone);
+  if (!container) return;
+  tags.forEach(tag => {
+    const btn = document.createElement('button');
+    btn.className = 'tag';
+    btn.textContent = tag;
+    btn.style.cssText = 'color:' + color + ';border-color:' + color + ';background:' + color + '22;';
+    const d = tagData[tag];
+    if (d) {
+      btn.addEventListener('mouseenter', () => showTip(btn, tag, d, color));
+      btn.addEventListener('mouseleave', startHide);
+      btn.addEventListener('click', e => { e.stopPropagation(); showTip(btn, tag, d, color); });
+    }
+    container.appendChild(btn);
+  });
+}
+function attachZoneTooltips(zoneData) {
+  document.querySelectorAll('.zone-label-wrap').forEach(wrap => {
+    const zone = wrap.closest('[data-zone]').dataset.zone;
+    const data = zoneData[zone];
+    if (!data) return;
+    wrap.addEventListener('mouseenter', () => {
+      const pick = data.tips[Math.floor(Math.random()*data.tips.length)];
+      showTip(wrap, pick.label, pick.tip, data.color);
+    });
+    wrap.addEventListener('mouseleave', startHide);
+  });
+}
+
+const tagData = {
+  'WINGERS':          "Wide players are your width creators. Stay wide, run in behind, and demand the ball to stretch the defense.",
+  'FULLBACKS':        "Fullbacks overlapping in wide channels create 2v1s. Time your run so you arrive as the ball arrives.",
+  'STRETCH DEFENSE':  "Width forces defenders to spread. The wider you play, the more space opens in the half-spaces and center.",
+  'CROSS':            "Early crosses before defenders set are dangerous. Whip it in with pace and aim for the near or far post.",
+  '1V1':              "Win your 1v1 in the wide channel and everything opens up. Back your ability — be direct and attack.",
+  '2V1':              "When you have a 2v1, be patient. Draw the defender, then play the pass at the right moment.",
+  'WIDTH':            "Width is a weapon. Never let the team collapse centrally — hold your position and stay wide.",
+  'FORWARDS':         "Forwards in the half-space can turn and shoot or play a third-man combination. Be alert and ready.",
+  'MIDFIELDERS':      "Midfielders arriving late into the half-space are hard to track. Time your run and arrive with purpose.",
+  'CUT INSIDE':       "Cutting inside from the half-space onto your strong foot creates shooting and through-ball opportunities.",
+  'TIMING OF RUNS':   "Run too early and you get caught offside. Time your run to arrive just as the ball is played.",
+  'STRIKERS':         "Strikers in the central channel hold up play, set for others, and make runs in behind. Always be a threat.",
+  'CENTRAL MIDS':     "Central mids control the tempo from the center. Dictate the rhythm and find the right moment to go forward.",
+  'SHOOT!':           "If the central channel opens up, shoot. A shot from distance can change the game.",
+  'CONTROL MIDDLE':   "Teams that control the central channel control the game. Win it, keep it, and use it.",
+};
+buildTags('wide',    '#4FC3F7', ['WINGERS','FULLBACKS','STRETCH DEFENSE','CROSS','1V1','2V1','WIDTH'], tagData);
+buildTags('half',    '#3DDC84', ['FORWARDS','MIDFIELDERS','CUT INSIDE','TIMING OF RUNS'], tagData);
+buildTags('central', '#FFD166', ['STRIKERS','CENTRAL MIDS','SHOOT!','CONTROL MIDDLE'], tagData);
+const zoneData = {
+  wide:    { color: '#4FC3F7', tips: [
+    { label: 'Hold Your Width', tip: "Never drift centrally when your team has the ball. Stay wide, stretch the defense, and be ready for the switch." },
+    { label: 'Attack 1v1', tip: "When you receive wide, look to attack your defender immediately. Use your pace and technique." },
+    { label: 'Early Ball', tip: "An early cross or cutback before defenders organize is often more dangerous than trying to beat everyone." },
+  ]},
+  half:    { color: '#3DDC84', tips: [
+    { label: 'Find the Pocket', tip: "The half-space between the fullback and center-back is often unguarded. Drift there and be ready to receive." },
+    { label: 'Third Man Run', tip: "Use a combination — pass wide, overlap, play back inside. The third player arriving late is hard to track." },
+    { label: 'Vary Your Runs', tip: "Don't always run the same way. Go in behind one time, check back the next. Keep defenders guessing." },
+  ]},
+  central: { color: '#FFD166', tips: [
+    { label: 'Use Width First', tip: "If the center is crowded, go wide first. Switching play opens up the central channel for the next attack." },
+    { label: 'Hold and Link', tip: "A striker holding up play in the center gives teammates time to join the attack and create overloads." },
+    { label: 'Shoot Early', tip: "If you get a half-yard of space in the central channel, shoot. Don't wait for the perfect chance." },
+  ]},
+};
+function selectZone(z) {
+  ['wide','half','central'].forEach(id => {
+    const card = document.getElementById('card-' + id);
+    if (card) card.classList.toggle('active', id === z);
+    document.querySelectorAll('[data-zone="' + id + '"]').forEach(el => el.classList.toggle('active', id === z));
+  });
+}
+attachZoneTooltips(zoneData);
+</script>
+</body>
+</html>
