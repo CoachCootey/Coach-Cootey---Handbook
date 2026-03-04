@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Instructional Videos — Coach Steven Cootey</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--dark:#0D1B2A;--card:#142233;--border:#1E3A50;--atk:#3DDC84;--mid:#4FC3F7;--def:#FF7043;--ylw:#FFD166;--light:#E8F4F0;--muted:#9BBCB0;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{background:var(--dark);color:var(--light);font-family:'Barlow',sans-serif;width:100%;height:100%;overflow:hidden;}
+  .scaler{position:absolute;top:0;left:0;transform-origin:top left;}
+  .page{width:1200px;height:625px;background:var(--dark);display:flex;flex-direction:column;}
+  a,a:visited{color:inherit;text-decoration:none;}
+  .btn-home{display:inline-flex;align-items:center;gap:4px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.8px;text-transform:uppercase;color:#0D1B2A;background:#FFD166;padding:2px 10px;border-radius:3px;}
+  .playlist-item{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:6px;cursor:pointer;border:1px solid var(--border);background:var(--card);transition:border-color 0.15s,transform 0.1s;flex-shrink:0;}
+  .playlist-item:hover{transform:translateX(3px);}
+  .playlist-item.active{border-color:rgba(255,255,255,0.3);background:#1a2f45;}
+  .banner{display:grid;grid-template-columns:repeat(5,1fr);background:var(--card);border:1px solid var(--border);border-radius:5px;margin:0 14px 4px;}
+  .bi{padding:4px 6px;text-align:center;border-right:1px solid var(--border);}
+  .bi:last-child{border-right:none;}
+  .bm{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:11px;}
+  .bs{font-size:7px;color:var(--muted);text-transform:uppercase;letter-spacing:0.3px;margin-top:1px;}
+  .footer{text-align:right;padding:2px 20px;font-size:8.5px;color:var(--muted);letter-spacing:1px;flex-shrink:0;}
+</style>
+</head>
+<body>
+<div class="scaler" id="scaler">
+<div class="page" id="page">
+
+  <!-- Accent bar -->
+  <div style="height:6px;flex-shrink:0;display:flex;">
+    <div style="flex:1;background:#4FC3F7;"></div><div style="flex:1;background:#FF7043;"></div><div style="flex:1;background:#3DDC84;"></div><div style="flex:1;background:#FFD166;"></div><div style="flex:1;background:#C77DFF;"></div>
+  </div>
+
+  <!-- Header -->
+  <div style="padding:5px 20px 4px;border-bottom:1px solid var(--border);flex-shrink:0;">
+    <div style="display:flex;justify-content:space-between;align-items:center;">
+      <div style="font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;">INSTRUCTIONAL VIDEOS &nbsp;—&nbsp; <strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;color:var(--light);">Coach Steven Cootey</strong></div>
+      <a href="index.html" class="btn-home">&#8249; HOME</a>
+    </div>
+    <div style="display:flex;align-items:baseline;gap:10px;margin-top:1px;line-height:1;">
+      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:30px;color:var(--light);">INSTRUCTIONAL</span>
+      <span style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:30px;color:var(--def);">VIDEOS</span>
+      <span style="font-size:10px;color:var(--muted);margin-left:4px;">Select a video from the playlist to play.</span>
+    </div>
+  </div>
+
+  <!-- Body: large player left + playlist right -->
+  <div style="flex:1;min-height:0;display:flex;gap:10px;padding:7px 14px 5px;">
+
+    <!-- Main player -->
+    <div style="flex:1;display:flex;flex-direction:column;min-width:0;gap:6px;">
+      <!-- Now playing label -->
+      <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+        <div id="now-dot" style="width:8px;height:8px;border-radius:50%;background:#4FC3F7;flex-shrink:0;"></div>
+        <div id="now-title" style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;color:#4FC3F7;">Soccer Basics Tutorial</div>
+        <div id="now-desc" style="font-size:9px;color:var(--muted);">Fundamentals of movement, positioning, and decision-making.</div>
+      </div>
+      <!-- iframe -->
+      <div style="flex:1;background:#0a1520;border-radius:8px;overflow:hidden;border:1px solid var(--border);position:relative;min-height:0;">
+        <iframe id="main-player"
+          src="https://drive.google.com/file/d/1asAhpB2LUhUvuX5kdLhQJB4w0H8XREhE/preview"
+          style="position:absolute;inset:0;width:100%;height:100%;border:none;"
+          allow="autoplay" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <!-- Playlist -->
+    <div style="width:310px;flex-shrink:0;display:flex;flex-direction:column;gap:6px;justify-content:space-between;">
+      <div class="playlist-item active"
+        id="item-0"
+        onclick="selectVideo(0)"
+        style="border-left:3px solid #4FC3F7;">
+        <div style="width:26px;height:26px;border-radius:50%;background:#4FC3F7;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;color:#0D1B2A;">1</div>
+        <div style="flex:1;min-width:0;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;color:#4FC3F7;line-height:1;">Soccer Basics Tutorial</div>
+          <div style="font-size:9px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Fundamentals of movement, positioning, and decision-making.</div>
+        </div>
+        <div style="font-size:18px;color:#4FC3F7;opacity:0.4;">▶</div>
+      </div><div class="playlist-item"
+        id="item-1"
+        onclick="selectVideo(1)"
+        style="border-left:3px solid #FF7043;">
+        <div style="width:26px;height:26px;border-radius:50%;background:#FF7043;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;color:#0D1B2A;">2</div>
+        <div style="flex:1;min-width:0;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;color:#FF7043;line-height:1;">Defensive Tactics</div>
+          <div style="font-size:9px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Defend as a unit — pressing, compactness, winning the ball back.</div>
+        </div>
+        <div style="font-size:18px;color:#FF7043;opacity:0.4;">▶</div>
+      </div><div class="playlist-item"
+        id="item-2"
+        onclick="selectVideo(2)"
+        style="border-left:3px solid #3DDC84;">
+        <div style="width:26px;height:26px;border-radius:50%;background:#3DDC84;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;color:#0D1B2A;">3</div>
+        <div style="flex:1;min-width:0;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;color:#3DDC84;line-height:1;">Attacking from the Outside</div>
+          <div style="font-size:9px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Wide channels and half-spaces to create and finish.</div>
+        </div>
+        <div style="font-size:18px;color:#3DDC84;opacity:0.4;">▶</div>
+      </div><div class="playlist-item"
+        id="item-3"
+        onclick="selectVideo(3)"
+        style="border-left:3px solid #FFD166;">
+        <div style="width:26px;height:26px;border-radius:50%;background:#FFD166;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;color:#0D1B2A;">4</div>
+        <div style="flex:1;min-width:0;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;color:#FFD166;line-height:1;">Attacking from the Inside</div>
+          <div style="font-size:9px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Central combinations, runs in behind, and finishing.</div>
+        </div>
+        <div style="font-size:18px;color:#FFD166;opacity:0.4;">▶</div>
+      </div><div class="playlist-item"
+        id="item-4"
+        onclick="selectVideo(4)"
+        style="border-left:3px solid #C77DFF;">
+        <div style="width:26px;height:26px;border-radius:50%;background:#C77DFF;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;color:#0D1B2A;">5</div>
+        <div style="flex:1;min-width:0;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;color:#C77DFF;line-height:1;">Striker Tactics</div>
+          <div style="font-size:9px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Movement, hold-up play, and how to be a dangerous striker.</div>
+        </div>
+        <div style="font-size:18px;color:#C77DFF;opacity:0.4;">▶</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="banner">
+    <div class="bi"><div class="bm" style="color:#4FC3F7">SOCCER BASICS TUTORIAL</div><div class="bs">Fundamentals of move</div></div><div class="bi"><div class="bm" style="color:#FF7043">DEFENSIVE TACTICS</div><div class="bs">Defend as a unit — p</div></div><div class="bi"><div class="bm" style="color:#3DDC84">ATTACKING FROM THE OUTSIDE</div><div class="bs">Wide channels and ha</div></div><div class="bi"><div class="bm" style="color:#FFD166">ATTACKING FROM THE INSIDE</div><div class="bs">Central combinations</div></div><div class="bi"><div class="bm" style="color:#C77DFF">STRIKER TACTICS</div><div class="bs">Movement, hold-up pl</div></div>
+  </div>
+  <div class="footer">INSTRUCTIONAL VIDEOS &nbsp;·&nbsp; COACH STEVEN COOTEY &nbsp;·&nbsp; 5 VIDEOS</div>
+
+</div>
+</div>
+
+<script>
+const videos = [('1asAhpB2LUhUvuX5kdLhQJB4w0H8XREhE', 'Soccer Basics Tutorial', 'Fundamentals of movement, positioning, and decision-making.', '#4FC3F7'), ('1Dr3cz9J1R0OBxQA60sAReruAl2tnPuos', 'Defensive Tactics', 'Defend as a unit — pressing, compactness, winning the ball back.', '#FF7043'), ('1RN6DtVRTlvDgSiPF77cTGzz5M0iypNXj', 'Attacking from the Outside', 'Wide channels and half-spaces to create and finish.', '#3DDC84'), ('192UYHn44MbAG6_VxvtwDqajwjZ6l2aja', 'Attacking from the Inside', 'Central combinations, runs in behind, and finishing.', '#FFD166'), ('1AIs2pwNZ7fdtwqzriM0FW3290ITN7X2R', 'Striker Tactics', 'Movement, hold-up play, and how to be a dangerous striker.', '#C77DFF')];
+
+function selectVideo(idx) {
+  const [fid, title, desc, color] = videos[idx];
+  document.getElementById('main-player').src = 'https://drive.google.com/file/d/' + fid + '/preview';
+  document.getElementById('now-title').textContent = title;
+  document.getElementById('now-title').style.color = color;
+  document.getElementById('now-desc').textContent = desc;
+  document.getElementById('now-dot').style.background = color;
+  document.querySelectorAll('.playlist-item').forEach((el,i) => {
+    el.classList.toggle('active', i === idx);
+  });
+}
+</script>
+
+<script>
+function scaleToFit(){
+  const s=document.getElementById('scaler');
+  const sw=window.innerWidth,sh=window.innerHeight,pw=1200,ph=625;
+  const sc=Math.min(sw/pw,sh/ph);
+  s.style.width=pw+'px';s.style.height=ph+'px';
+  s.style.transform='scale('+sc+')';
+  s.style.left=((sw-pw*sc)/2)+'px';s.style.top='0px';
+  document.body.style.height=(ph*sc)+'px';
+}
+window.addEventListener('resize',scaleToFit);
+window.addEventListener('load',scaleToFit);
+</script>
+</body>
+</html>

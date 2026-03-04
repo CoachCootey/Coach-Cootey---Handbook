@@ -12,12 +12,14 @@
   .scaler{position:absolute;top:0;left:0;transform-origin:top left;}
   .page{width:1200px;height:625px;background:var(--dark);display:flex;flex-direction:column;}
   a,a:visited{color:inherit;text-decoration:none;}
-  .card{display:flex;flex-direction:column;flex:1;border-radius:8px;overflow:hidden;cursor:pointer;border:1px solid var(--border);transition:border-color 0.15s, transform 0.12s;}
+  .card{display:flex;flex-direction:column;border-radius:8px;overflow:hidden;cursor:pointer;border:1px solid var(--border);transition:border-color 0.15s,transform 0.12s;}
   .card:hover{transform:translateY(-2px);}
+  .card *{pointer-events:none;}
+  .card{pointer-events:auto;}
   .banner{display:grid;background:var(--card);border:1px solid var(--border);border-radius:5px;margin:0 16px 4px;}
   .bi{padding:4px 6px;text-align:center;border-right:1px solid var(--border);}
   .bi:last-child{border-right:none;}
-  .bm{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:12px;}
+  .bm{font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:11px;}
   .bs{font-size:7px;color:var(--muted);text-transform:uppercase;letter-spacing:0.3px;margin-top:1px;}
   .footer{text-align:right;padding:2px 20px;font-size:8.5px;color:var(--muted);letter-spacing:1px;flex-shrink:0;}
 </style>
@@ -26,79 +28,123 @@
 <div class="scaler" id="scaler">
 <div class="page" id="page">
 
-  <!-- Split accent bar -->
+  <!-- Split accent bar — 3 colors -->
   <div style="height:6px;flex-shrink:0;display:flex;">
     <div style="flex:1;background:var(--mid);"></div>
+    <div style="flex:1;background:var(--def);"></div>
     <div style="flex:1;background:var(--ylw);"></div>
   </div>
 
   <!-- Header -->
-  <div style="padding:6px 22px 5px;border-bottom:1px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:space-between;">
+  <div style="padding:5px 22px 4px;border-bottom:1px solid var(--border);flex-shrink:0;display:flex;align-items:center;justify-content:space-between;">
     <div>
       <div style="font-size:10px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:1px;">PLAYER HANDBOOK &nbsp;·&nbsp; <strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;color:var(--light);letter-spacing:0.5px;">Coach Steven Cootey</strong></div>
       <div style="display:flex;align-items:baseline;gap:10px;line-height:1;">
-        <span style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:34px;color:var(--light);letter-spacing:-0.5px;">COACH</span>
-        <span style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:34px;color:var(--atk);letter-spacing:-0.5px;">COOTEY</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:32px;color:var(--light);letter-spacing:-0.5px;">COACH</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:32px;color:var(--atk);letter-spacing:-0.5px;">COOTEY</span>
       </div>
     </div>
     <div style="text-align:right;">
       <div style="font-family:'Barlow Condensed',sans-serif;font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;">Everything about how we play,</div>
       <div style="font-family:'Barlow Condensed',sans-serif;font-size:11px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;">train, and carry ourselves every day.</div>
-      <div style="margin-top:4px;display:flex;gap:8px;justify-content:flex-end;align-items:center;">
+      <div style="margin-top:4px;display:flex;gap:8px;justify-content:flex-end;">
         <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;color:var(--mid);letter-spacing:1px;padding:2px 10px;border:1px solid var(--mid);border-radius:3px;">7 TACTICAL GUIDES</span>
-        <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;color:var(--ylw);letter-spacing:1px;padding:2px 10px;border:1px solid var(--ylw);border-radius:3px;">8 PROGRAM STANDARDS</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;color:var(--def);letter-spacing:1px;padding:2px 10px;border:1px solid var(--def);border-radius:3px;">5 VIDEOS</span>
+        <span style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;color:var(--ylw);letter-spacing:1px;padding:2px 10px;border:1px solid var(--ylw);border-radius:3px;">8 STANDARDS</span>
       </div>
     </div>
   </div>
 
-  <!-- Two section cards -->
-  <div style="display:flex;flex:1;min-height:0;gap:10px;padding:8px 16px 6px;">
+  <!-- Three section cards -->
+  <div style="display:flex;flex:1;min-height:0;gap:8px;padding:7px 16px 5px;">
 
     <!-- TACTICAL GUIDES -->
-    <a href="guides_list.html" class="card" style="border-top:3px solid var(--mid);">
-      <div style="padding:8px 16px 6px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;background:rgba(79,195,247,0.05);">
-        <div style="width:32px;height:32px;border-radius:50%;background:var(--mid);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:16px;color:#0D1B2A;flex-shrink:0;">7</div>
+    <a href="guides_list.html" class="card" style="flex:1;border-top:3px solid var(--mid);" onclick="window.location='guides_list.html';return true;">
+      <div style="padding:7px 14px 5px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;background:rgba(79,195,247,0.05);">
+        <div style="width:28px;height:28px;border-radius:50%;background:var(--mid);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;color:#0D1B2A;flex-shrink:0;">7</div>
         <div style="flex:1;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:21px;color:var(--mid);line-height:1;">Tactical Guides</div>
-          <div style="font-size:9px;color:var(--muted);margin-top:2px;letter-spacing:0.3px;">How we play — in possession, out of possession, transitions &amp; support</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:18px;color:var(--mid);line-height:1;">Tactical Guides</div>
+          <div style="font-size:8.5px;color:var(--muted);margin-top:1px;">How we play — tap to browse all 7</div>
         </div>
-        <div style="font-size:26px;color:var(--mid);opacity:0.35;font-weight:300;">›</div>
+        <div style="font-size:22px;color:var(--mid);opacity:0.3;">›</div>
       </div>
-      <div style="padding:7px 16px 6px;display:flex;flex-direction:column;flex:1;justify-content:space-between;">
+      <div style="padding:5px 14px 4px;display:flex;flex-direction:column;flex:1;justify-content:space-between;">
         <div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
           <div style="width:20px;height:20px;border-radius:50%;background:#3DDC84;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:9px;color:#0D1B2A;">1</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;color:#3DDC84;width:190px;flex-shrink:0;line-height:1;">The Three Thirds</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;color:#3DDC84;width:175px;flex-shrink:0;line-height:1;">The Three Thirds</div>
           <div style="display:flex;gap:3px;overflow:hidden;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #3DDC84;color:#3DDC84;background:rgba(61,220,132,0.1);white-space:nowrap;">ATTACKING</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #4FC3F7;color:#4FC3F7;background:rgba(79,195,247,0.1);white-space:nowrap;">MIDDLE</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #FF7043;color:#FF7043;background:rgba(255,112,67,0.1);white-space:nowrap;">DEFENDING</span></div>
         </div>
 <div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
           <div style="width:20px;height:20px;border-radius:50%;background:#4FC3F7;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:9px;color:#0D1B2A;">2</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;color:#4FC3F7;width:190px;flex-shrink:0;line-height:1;">5 Channels — In Possession</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;color:#4FC3F7;width:175px;flex-shrink:0;line-height:1;">5 Channels — In Possession</div>
           <div style="display:flex;gap:3px;overflow:hidden;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #4FC3F7;color:#4FC3F7;background:rgba(79,195,247,0.1);white-space:nowrap;">WIDTH</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #3DDC84;color:#3DDC84;background:rgba(61,220,132,0.1);white-space:nowrap;">HALF-SPACE</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #FFD166;color:#FFD166;background:rgba(255,209,102,0.1);white-space:nowrap;">CENTRAL</span></div>
         </div>
 <div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
           <div style="width:20px;height:20px;border-radius:50%;background:#FF7043;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:9px;color:#0D1B2A;">3</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;color:#FF7043;width:190px;flex-shrink:0;line-height:1;">5 Channels — Out of Possession</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;color:#FF7043;width:175px;flex-shrink:0;line-height:1;">5 Channels — Out of Possession</div>
           <div style="display:flex;gap:3px;overflow:hidden;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #FF7043;color:#FF7043;background:rgba(255,112,67,0.1);white-space:nowrap;">DELAY</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #FF7043;color:#FF7043;background:rgba(255,112,67,0.1);white-space:nowrap;">DENY</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #FF7043;color:#FF7043;background:rgba(255,112,67,0.1);white-space:nowrap;">DEFEND</span></div>
         </div>
 <div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
           <div style="width:20px;height:20px;border-radius:50%;background:#FFD166;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:9px;color:#0D1B2A;">4</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;color:#FFD166;width:190px;flex-shrink:0;line-height:1;">Transitions</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;color:#FFD166;width:175px;flex-shrink:0;line-height:1;">Transitions</div>
           <div style="display:flex;gap:3px;overflow:hidden;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #FFD166;color:#FFD166;background:rgba(255,209,102,0.1);white-space:nowrap;">5-SECOND RULE</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #3DDC84;color:#3DDC84;background:rgba(61,220,132,0.1);white-space:nowrap;">COUNTER</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #FF7043;color:#FF7043;background:rgba(255,112,67,0.1);white-space:nowrap;">RECOVER</span></div>
         </div>
 <div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
           <div style="width:20px;height:20px;border-radius:50%;background:#C77DFF;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:9px;color:#0D1B2A;">5</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;color:#C77DFF;width:190px;flex-shrink:0;line-height:1;">ABD'S of Support</div>
-          <div style="display:flex;gap:3px;overflow:hidden;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #C77DFF;color:#C77DFF;background:rgba(199,125,255,0.1);white-space:nowrap;">ANGLE</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #C77DFF;color:#C77DFF;background:rgba(199,125,255,0.1);white-space:nowrap;">BODY</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #C77DFF;color:#C77DFF;background:rgba(199,125,255,0.1);white-space:nowrap;">DISTANCE</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #C77DFF;color:#C77DFF;background:rgba(199,125,255,0.1);white-space:nowrap;">SCAN</span></div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;color:#C77DFF;width:175px;flex-shrink:0;line-height:1;">ABD'S of Support</div>
+          <div style="display:flex;gap:3px;overflow:hidden;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #C77DFF;color:#C77DFF;background:rgba(199,125,255,0.1);white-space:nowrap;">ANGLE</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #C77DFF;color:#C77DFF;background:rgba(199,125,255,0.1);white-space:nowrap;">BODY</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #C77DFF;color:#C77DFF;background:rgba(199,125,255,0.1);white-space:nowrap;">DISTANCE</span></div>
         </div>
 <div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
           <div style="width:20px;height:20px;border-radius:50%;background:#FF7043;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:9px;color:#0D1B2A;">6</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;color:#FF7043;width:190px;flex-shrink:0;line-height:1;">The 4 B's of Support</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;color:#FF7043;width:175px;flex-shrink:0;line-height:1;">The 4 B's of Support</div>
           <div style="display:flex;gap:3px;overflow:hidden;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #4FC3F7;color:#4FC3F7;background:rgba(79,195,247,0.1);white-space:nowrap;">BEHIND</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #3DDC84;color:#3DDC84;background:rgba(61,220,132,0.1);white-space:nowrap;">BESIDE</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #FF7043;color:#FF7043;background:rgba(255,112,67,0.1);white-space:nowrap;">BETWEEN</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #C77DFF;color:#C77DFF;background:rgba(199,125,255,0.1);white-space:nowrap;">BEYOND</span></div>
         </div>
 <div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
           <div style="width:20px;height:20px;border-radius:50%;background:#4FC3F7;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:9px;color:#0D1B2A;">7</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;color:#4FC3F7;width:190px;flex-shrink:0;line-height:1;">How Can You Help?</div>
-          <div style="display:flex;gap:3px;overflow:hidden;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #3DDC84;color:#3DDC84;background:rgba(61,220,132,0.1);white-space:nowrap;">ATTACK</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #4FC3F7;color:#4FC3F7;background:rgba(79,195,247,0.1);white-space:nowrap;">SUPPORT</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #FF7043;color:#FF7043;background:rgba(255,112,67,0.1);white-space:nowrap;">DEFEND</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #FFD166;color:#FFD166;background:rgba(255,209,102,0.1);white-space:nowrap;">SPREAD</span></div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;color:#4FC3F7;width:175px;flex-shrink:0;line-height:1;">How Can You Help?</div>
+          <div style="display:flex;gap:3px;overflow:hidden;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #3DDC84;color:#3DDC84;background:rgba(61,220,132,0.1);white-space:nowrap;">ATTACK</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #4FC3F7;color:#4FC3F7;background:rgba(79,195,247,0.1);white-space:nowrap;">SUPPORT</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #FF7043;color:#FF7043;background:rgba(255,112,67,0.1);white-space:nowrap;">DEFEND</span></div>
+        </div>
+      </div>
+    </a>
+
+    <!-- Divider -->
+    <div style="width:1px;background:var(--border);flex-shrink:0;margin:4px 0;"></div>
+
+    <!-- INSTRUCTIONAL VIDEOS -->
+    <a href="videos.html" class="card" style="flex:1;border-top:3px solid var(--def);" onclick="window.location='videos.html';return true;">
+      <div style="padding:7px 14px 5px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;background:rgba(255,112,67,0.05);">
+        <div style="width:28px;height:28px;border-radius:50%;background:var(--def);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;color:#0D1B2A;flex-shrink:0;">5</div>
+        <div style="flex:1;">
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:18px;color:var(--def);line-height:1;">Instructional Videos</div>
+          <div style="font-size:8.5px;color:var(--muted);margin-top:1px;">Video guides — tap to watch all 5</div>
+        </div>
+        <div style="font-size:22px;color:var(--def);opacity:0.3;">›</div>
+      </div>
+      <div style="padding:5px 14px 4px;display:flex;flex-direction:column;flex:1;justify-content:space-between;">
+        <div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+          <div style="width:20px;height:20px;border-radius:50%;background:#4FC3F7;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:9px;color:#0D1B2A;">1</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;color:#4FC3F7;width:175px;flex-shrink:0;line-height:1;">Soccer Basics Tutorial</div>
+          <div style="display:flex;gap:3px;overflow:hidden;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #4FC3F7;color:#4FC3F7;background:rgba(79,195,247,0.1);white-space:nowrap;">FUNDAMENTALS</span></div>
+        </div>
+<div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+          <div style="width:20px;height:20px;border-radius:50%;background:#FF7043;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:9px;color:#0D1B2A;">2</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;color:#FF7043;width:175px;flex-shrink:0;line-height:1;">Defensive Tactics</div>
+          <div style="display:flex;gap:3px;overflow:hidden;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #FF7043;color:#FF7043;background:rgba(255,112,67,0.1);white-space:nowrap;">DEFENDING</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #FF7043;color:#FF7043;background:rgba(255,112,67,0.1);white-space:nowrap;">PRESSING</span></div>
+        </div>
+<div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+          <div style="width:20px;height:20px;border-radius:50%;background:#3DDC84;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:9px;color:#0D1B2A;">3</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;color:#3DDC84;width:175px;flex-shrink:0;line-height:1;">Attacking from the Outside</div>
+          <div style="display:flex;gap:3px;overflow:hidden;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #3DDC84;color:#3DDC84;background:rgba(61,220,132,0.1);white-space:nowrap;">WIDE CHANNELS</span></div>
+        </div>
+<div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+          <div style="width:20px;height:20px;border-radius:50%;background:#FFD166;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:9px;color:#0D1B2A;">4</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;color:#FFD166;width:175px;flex-shrink:0;line-height:1;">Attacking from the Inside</div>
+          <div style="display:flex;gap:3px;overflow:hidden;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #FFD166;color:#FFD166;background:rgba(255,209,102,0.1);white-space:nowrap;">CENTRAL PLAY</span></div>
+        </div>
+<div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
+          <div style="width:20px;height:20px;border-radius:50%;background:#C77DFF;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:9px;color:#0D1B2A;">5</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;color:#C77DFF;width:175px;flex-shrink:0;line-height:1;">Striker Tactics</div>
+          <div style="display:flex;gap:3px;overflow:hidden;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #C77DFF;color:#C77DFF;background:rgba(199,125,255,0.1);white-space:nowrap;">FINISHING</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #C77DFF;color:#C77DFF;background:rgba(199,125,255,0.1);white-space:nowrap;">MOVEMENT</span></div>
         </div>
       </div>
     </a>
@@ -107,54 +153,54 @@
     <div style="width:1px;background:var(--border);flex-shrink:0;margin:4px 0;"></div>
 
     <!-- PROGRAM STANDARDS -->
-    <a href="program_standards.html" class="card" style="border-top:3px solid var(--ylw);">
-      <div style="padding:8px 16px 6px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;background:rgba(255,209,102,0.05);">
-        <div style="width:32px;height:32px;border-radius:50%;background:var(--ylw);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:16px;color:#0D1B2A;flex-shrink:0;">8</div>
+    <a href="program_standards.html" class="card" style="flex:1;border-top:3px solid var(--ylw);" onclick="window.location='program_standards.html';return true;">
+      <div style="padding:7px 14px 5px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;background:rgba(255,209,102,0.05);">
+        <div style="width:28px;height:28px;border-radius:50%;background:var(--ylw);display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:14px;color:#0D1B2A;flex-shrink:0;">8</div>
         <div style="flex:1;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:21px;color:var(--ylw);line-height:1;">Program Standards</div>
-          <div style="font-size:9px;color:var(--muted);margin-top:2px;letter-spacing:0.3px;">How we train, compete, and carry ourselves every day</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:18px;color:var(--ylw);line-height:1;">Program Standards</div>
+          <div style="font-size:8.5px;color:var(--muted);margin-top:1px;">How we carry ourselves — tap to browse all 8</div>
         </div>
-        <div style="font-size:26px;color:var(--ylw);opacity:0.35;font-weight:300;">›</div>
+        <div style="font-size:22px;color:var(--ylw);opacity:0.3;">›</div>
       </div>
-      <div style="padding:7px 16px 6px;display:flex;flex-direction:column;flex:1;justify-content:space-between;">
+      <div style="padding:5px 14px 4px;display:flex;flex-direction:column;flex:1;justify-content:space-between;">
         <div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
           <div style="width:20px;height:20px;border-radius:50%;background:#3DDC84;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:9px;color:#0D1B2A;">S1</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;color:#3DDC84;width:190px;flex-shrink:0;line-height:1;">Process Over Outcome</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;color:#3DDC84;width:175px;flex-shrink:0;line-height:1;">Process Over Outcome</div>
           <div style="display:flex;gap:3px;overflow:hidden;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #3DDC84;color:#3DDC84;background:rgba(61,220,132,0.1);white-space:nowrap;">PURPOSE</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #3DDC84;color:#3DDC84;background:rgba(61,220,132,0.1);white-space:nowrap;">DECISIONS</span></div>
         </div>
 <div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
           <div style="width:20px;height:20px;border-radius:50%;background:#4FC3F7;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:9px;color:#0D1B2A;">S2</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;color:#4FC3F7;width:190px;flex-shrink:0;line-height:1;">Growth Mindset</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;color:#4FC3F7;width:175px;flex-shrink:0;line-height:1;">Growth Mindset</div>
           <div style="display:flex;gap:3px;overflow:hidden;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #4FC3F7;color:#4FC3F7;background:rgba(79,195,247,0.1);white-space:nowrap;">EFFORT</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #4FC3F7;color:#4FC3F7;background:rgba(79,195,247,0.1);white-space:nowrap;">LEARNING</span></div>
         </div>
 <div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
           <div style="width:20px;height:20px;border-radius:50%;background:#FF7043;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:9px;color:#0D1B2A;">S3</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;color:#FF7043;width:190px;flex-shrink:0;line-height:1;">Fearless Effort</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;color:#FF7043;width:175px;flex-shrink:0;line-height:1;">Fearless Effort</div>
           <div style="display:flex;gap:3px;overflow:hidden;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #FF7043;color:#FF7043;background:rgba(255,112,67,0.1);white-space:nowrap;">BOLD</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #FF7043;color:#FF7043;background:rgba(255,112,67,0.1);white-space:nowrap;">NO FEAR</span></div>
         </div>
 <div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
           <div style="width:20px;height:20px;border-radius:50%;background:#FFD166;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:9px;color:#0D1B2A;">S4</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;color:#FFD166;width:190px;flex-shrink:0;line-height:1;">Ownership of Development</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;color:#FFD166;width:175px;flex-shrink:0;line-height:1;">Ownership of Development</div>
           <div style="display:flex;gap:3px;overflow:hidden;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #FFD166;color:#FFD166;background:rgba(255,209,102,0.1);white-space:nowrap;">YOUR GROWTH</span></div>
         </div>
 <div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
           <div style="width:20px;height:20px;border-radius:50%;background:#C77DFF;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:9px;color:#0D1B2A;">S5</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;color:#C77DFF;width:190px;flex-shrink:0;line-height:1;">Competitive Mindset</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;color:#C77DFF;width:175px;flex-shrink:0;line-height:1;">Competitive Mindset</div>
           <div style="display:flex;gap:3px;overflow:hidden;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #C77DFF;color:#C77DFF;background:rgba(199,125,255,0.1);white-space:nowrap;">TRUST</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #C77DFF;color:#C77DFF;background:rgba(199,125,255,0.1);white-space:nowrap;">COMPETE</span></div>
         </div>
 <div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
           <div style="width:20px;height:20px;border-radius:50%;background:#3DDC84;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:9px;color:#0D1B2A;">S6</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;color:#3DDC84;width:190px;flex-shrink:0;line-height:1;">Honoring the Game</div>
-          <div style="display:flex;gap:3px;overflow:hidden;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #3DDC84;color:#3DDC84;background:rgba(61,220,132,0.1);white-space:nowrap;">CHARACTER</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #3DDC84;color:#3DDC84;background:rgba(61,220,132,0.1);white-space:nowrap;">RESPECT</span></div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;color:#3DDC84;width:175px;flex-shrink:0;line-height:1;">Honoring the Game</div>
+          <div style="display:flex;gap:3px;overflow:hidden;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #3DDC84;color:#3DDC84;background:rgba(61,220,132,0.1);white-space:nowrap;">CHARACTER</span></div>
         </div>
 <div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
           <div style="width:20px;height:20px;border-radius:50%;background:#4FC3F7;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:9px;color:#0D1B2A;">S7</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;color:#4FC3F7;width:190px;flex-shrink:0;line-height:1;">Defining Success</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;color:#4FC3F7;width:175px;flex-shrink:0;line-height:1;">Defining Success</div>
           <div style="display:flex;gap:3px;overflow:hidden;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #4FC3F7;color:#4FC3F7;background:rgba(79,195,247,0.1);white-space:nowrap;">DEVELOPMENT</span></div>
         </div>
 <div style="display:flex;align-items:center;gap:8px;padding:4px 0;border-bottom:1px solid rgba(255,255,255,0.04);">
           <div style="width:20px;height:20px;border-radius:50%;background:#FF7043;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:9px;color:#0D1B2A;">S8</div>
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;color:#FF7043;width:190px;flex-shrink:0;line-height:1;">Culture First</div>
+          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:12px;color:#FF7043;width:175px;flex-shrink:0;line-height:1;">Culture First</div>
           <div style="display:flex;gap:3px;overflow:hidden;"><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #FF7043;color:#FF7043;background:rgba(255,112,67,0.1);white-space:nowrap;">TEAM FIRST</span><span style="font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:8px;letter-spacing:0.4px;padding:1px 6px;border-radius:2px;border:1px solid #FF7043;color:#FF7043;background:rgba(255,112,67,0.1);white-space:nowrap;">NO EGO</span></div>
         </div>
       </div>
@@ -162,17 +208,18 @@
 
   </div>
 
-  <div class="banner" style="grid-template-columns:repeat(8,1fr);">
+  <div class="banner" style="grid-template-columns:repeat(9,1fr);">
     <div class="bi"><div class="bm" style="color:#3DDC84">THREE THIRDS</div><div class="bs">Know the Field</div></div>
     <div class="bi"><div class="bm" style="color:#4FC3F7">5 CHANNELS</div><div class="bs">In Possession</div></div>
     <div class="bi"><div class="bm" style="color:#FF7043">5 CHANNELS</div><div class="bs">Out of Possession</div></div>
     <div class="bi"><div class="bm" style="color:#FFD166">TRANSITIONS</div><div class="bs">React in 5s</div></div>
-    <div class="bi"><div class="bm" style="color:#C77DFF">ABD'S</div><div class="bs">Angle · Body · Distance</div></div>
-    <div class="bi"><div class="bm" style="color:#FF7043">4 B'S</div><div class="bs">Behind · Beside · Beyond</div></div>
-    <div class="bi"><div class="bm" style="color:#4FC3F7">HOW CAN YOU HELP</div><div class="bs">Never Watch</div></div>
+    <div class="bi"><div class="bm" style="color:#C77DFF">ABD'S · 4 B'S</div><div class="bs">Support Play</div></div>
+    <div class="bi"><div class="bm" style="color:#FF7043">DEFENSIVE</div><div class="bs">Tactics</div></div>
+    <div class="bi"><div class="bm" style="color:#3DDC84">ATTACKING</div><div class="bs">Outside & Inside</div></div>
+    <div class="bi"><div class="bm" style="color:#C77DFF">STRIKER</div><div class="bs">Tactics</div></div>
     <div class="bi"><div class="bm" style="color:#FFD166">STANDARDS</div><div class="bs">8 Principles</div></div>
   </div>
-  <div class="footer">COACH STEVEN COOTEY &nbsp;·&nbsp; 7 GUIDES &nbsp;·&nbsp; 8 STANDARDS</div>
+  <div class="footer">COACH STEVEN COOTEY &nbsp;·&nbsp; 7 GUIDES &nbsp;·&nbsp; 5 VIDEOS &nbsp;·&nbsp; 8 STANDARDS</div>
 
 </div>
 </div>
