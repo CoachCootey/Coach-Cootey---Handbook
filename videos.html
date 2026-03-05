@@ -13,9 +13,7 @@
   .page{width:1200px;height:625px;background:var(--dark);display:flex;flex-direction:column;}
   a,a:visited{color:inherit;text-decoration:none;}
   .btn-home{display:inline-flex;align-items:center;gap:4px;font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:11px;letter-spacing:0.8px;text-transform:uppercase;color:#0D1B2A;background:#FFD166;padding:2px 10px;border-radius:3px;}
-  .playlist-item{display:flex;align-items:center;gap:10px;padding:8px 12px;border-radius:6px;cursor:pointer;border:1px solid var(--border);background:var(--card);transition:border-color 0.15s,transform 0.1s;flex-shrink:0;}
-  .playlist-item:hover{transform:translateX(3px);}
-  .playlist-item.active{border-color:rgba(255,255,255,0.3);background:#1a2f45;}
+  .playlist-item.active{background:#1a2f45 !important;border-color:rgba(255,255,255,0.25) !important;}
   .banner{display:grid;grid-template-columns:repeat(5,1fr);background:var(--card);border:1px solid var(--border);border-radius:5px;margin:0 14px 4px;}
   .bi{padding:4px 6px;text-align:center;border-right:1px solid var(--border);}
   .bi:last-child{border-right:none;}
@@ -28,12 +26,10 @@
 <div class="scaler" id="scaler">
 <div class="page" id="page">
 
-  <!-- Accent bar -->
   <div style="height:6px;flex-shrink:0;display:flex;">
     <div style="flex:1;background:#4FC3F7;"></div><div style="flex:1;background:#FF7043;"></div><div style="flex:1;background:#3DDC84;"></div><div style="flex:1;background:#FFD166;"></div><div style="flex:1;background:#C77DFF;"></div>
   </div>
 
-  <!-- Header -->
   <div style="padding:5px 20px 4px;border-bottom:1px solid var(--border);flex-shrink:0;">
     <div style="display:flex;justify-content:space-between;align-items:center;">
       <div style="font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;">INSTRUCTIONAL VIDEOS &nbsp;—&nbsp; <strong style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:13px;color:var(--light);">Coach Steven Cootey</strong></div>
@@ -46,85 +42,90 @@
     </div>
   </div>
 
-  <!-- Body: large player left + playlist right -->
   <div style="flex:1;min-height:0;display:flex;gap:10px;padding:7px 14px 5px;">
 
     <!-- Main player -->
-    <div style="flex:1;display:flex;flex-direction:column;min-width:0;gap:6px;">
-      <!-- Now playing label -->
+    <div style="flex:1;display:flex;flex-direction:column;min-width:0;gap:5px;">
       <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
         <div id="now-dot" style="width:8px;height:8px;border-radius:50%;background:#4FC3F7;flex-shrink:0;"></div>
-        <div id="now-title" style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:16px;color:#4FC3F7;">Soccer Basics Tutorial</div>
+        <div id="now-title" style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:15px;color:#4FC3F7;">Soccer Basics Tutorial</div>
         <div id="now-desc" style="font-size:9px;color:var(--muted);">Fundamentals of movement, positioning, and decision-making.</div>
       </div>
-      <!-- iframe -->
-      <div style="flex:1;background:#0a1520;border-radius:8px;overflow:hidden;border:1px solid var(--border);position:relative;min-height:0;">
+      <div style="flex:1;background:#000;border-radius:8px;overflow:hidden;border:1px solid var(--border);position:relative;min-height:0;">
         <iframe id="main-player"
-          src="https://drive.google.com/file/d/1asAhpB2LUhUvuX5kdLhQJB4w0H8XREhE/preview"
+          src="https://www.youtube.com/embed/Leuv3mJxm3Q?rel=0&modestbranding=1"
           style="position:absolute;inset:0;width:100%;height:100%;border:none;"
-          allow="autoplay" allowfullscreen></iframe>
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen></iframe>
       </div>
     </div>
 
     <!-- Playlist -->
-    <div style="width:310px;flex-shrink:0;display:flex;flex-direction:column;gap:6px;justify-content:space-between;">
-      <div class="playlist-item active"
-        id="item-0"
-        onclick="selectVideo(0)"
-        style="border-left:3px solid #4FC3F7;">
-        <div style="width:26px;height:26px;border-radius:50%;background:#4FC3F7;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;color:#0D1B2A;">1</div>
-        <div style="flex:1;min-width:0;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;color:#4FC3F7;line-height:1;">Soccer Basics Tutorial</div>
-          <div style="font-size:9px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Fundamentals of movement, positioning, and decision-making.</div>
-        </div>
-        <div style="font-size:18px;color:#4FC3F7;opacity:0.4;">▶</div>
-      </div><div class="playlist-item"
-        id="item-1"
-        onclick="selectVideo(1)"
-        style="border-left:3px solid #FF7043;">
-        <div style="width:26px;height:26px;border-radius:50%;background:#FF7043;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;color:#0D1B2A;">2</div>
-        <div style="flex:1;min-width:0;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;color:#FF7043;line-height:1;">Defensive Tactics</div>
-          <div style="font-size:9px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Defend as a unit — pressing, compactness, winning the ball back.</div>
-        </div>
-        <div style="font-size:18px;color:#FF7043;opacity:0.4;">▶</div>
-      </div><div class="playlist-item"
-        id="item-2"
-        onclick="selectVideo(2)"
-        style="border-left:3px solid #3DDC84;">
-        <div style="width:26px;height:26px;border-radius:50%;background:#3DDC84;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;color:#0D1B2A;">3</div>
-        <div style="flex:1;min-width:0;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;color:#3DDC84;line-height:1;">Attacking from the Outside</div>
-          <div style="font-size:9px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Wide channels and half-spaces to create and finish.</div>
-        </div>
-        <div style="font-size:18px;color:#3DDC84;opacity:0.4;">▶</div>
-      </div><div class="playlist-item"
-        id="item-3"
-        onclick="selectVideo(3)"
-        style="border-left:3px solid #FFD166;">
-        <div style="width:26px;height:26px;border-radius:50%;background:#FFD166;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;color:#0D1B2A;">4</div>
-        <div style="flex:1;min-width:0;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;color:#FFD166;line-height:1;">Attacking from the Inside</div>
-          <div style="font-size:9px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Central combinations, runs in behind, and finishing.</div>
-        </div>
-        <div style="font-size:18px;color:#FFD166;opacity:0.4;">▶</div>
-      </div><div class="playlist-item"
-        id="item-4"
-        onclick="selectVideo(4)"
-        style="border-left:3px solid #C77DFF;">
-        <div style="width:26px;height:26px;border-radius:50%;background:#C77DFF;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:12px;color:#0D1B2A;">5</div>
-        <div style="flex:1;min-width:0;">
-          <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:14px;color:#C77DFF;line-height:1;">Striker Tactics</div>
-          <div style="font-size:9px;color:var(--muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">Movement, hold-up play, and how to be a dangerous striker.</div>
-        </div>
-        <div style="font-size:18px;color:#C77DFF;opacity:0.4;">▶</div>
+    <div style="width:360px;flex-shrink:0;display:flex;flex-direction:column;gap:5px;">
+      <div style="font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:9px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;flex-shrink:0;">All Videos</div>
+      <div style="display:flex;flex-direction:column;gap:5px;flex:1;justify-content:space-between;">
+        <div onclick="selectVideo(0)" id="item-0"
+      style="display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:6px;cursor:pointer;border:1px solid var(--border);border-left:4px solid #4FC3F7;background:var(--card);transition:background 0.15s,transform 0.1s;flex:1;"
+      onmouseover="this.style.background='rgba(79,195,247,0.1)';this.style.transform='translateX(3px)'"
+      onmouseout="if(!this.classList.contains('active')){this.style.background='var(--card)';this.style.transform=''}">
+      <div style="width:28px;height:28px;border-radius:50%;background:#4FC3F7;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;color:#0D1B2A;">1</div>
+      <div style="flex:1;min-width:0;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:14px;color:#4FC3F7;line-height:1;">Soccer Basics Tutorial</div>
+        <div style="font-size:9px;color:var(--muted);margin-top:2px;line-height:1.3;">Fundamentals of movement, positioning, and decision-making.</div>
+      </div>
+      <div style="font-size:16px;color:#4FC3F7;opacity:0.4;" id="arr-0">▶</div>
+    </div>
+<div onclick="selectVideo(1)" id="item-1"
+      style="display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:6px;cursor:pointer;border:1px solid var(--border);border-left:4px solid #FF7043;background:var(--card);transition:background 0.15s,transform 0.1s;flex:1;"
+      onmouseover="this.style.background='rgba(255,112,67,0.1)';this.style.transform='translateX(3px)'"
+      onmouseout="if(!this.classList.contains('active')){this.style.background='var(--card)';this.style.transform=''}">
+      <div style="width:28px;height:28px;border-radius:50%;background:#FF7043;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;color:#0D1B2A;">2</div>
+      <div style="flex:1;min-width:0;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:14px;color:#FF7043;line-height:1;">Defensive Tactics</div>
+        <div style="font-size:9px;color:var(--muted);margin-top:2px;line-height:1.3;">Defend as a unit — pressing, compactness, winning the ball back.</div>
+      </div>
+      <div style="font-size:16px;color:#FF7043;opacity:0.4;" id="arr-1">▶</div>
+    </div>
+<div onclick="selectVideo(2)" id="item-2"
+      style="display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:6px;cursor:pointer;border:1px solid var(--border);border-left:4px solid #3DDC84;background:var(--card);transition:background 0.15s,transform 0.1s;flex:1;"
+      onmouseover="this.style.background='rgba(61,220,132,0.1)';this.style.transform='translateX(3px)'"
+      onmouseout="if(!this.classList.contains('active')){this.style.background='var(--card)';this.style.transform=''}">
+      <div style="width:28px;height:28px;border-radius:50%;background:#3DDC84;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;color:#0D1B2A;">3</div>
+      <div style="flex:1;min-width:0;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:14px;color:#3DDC84;line-height:1;">Attacking from the Outside</div>
+        <div style="font-size:9px;color:var(--muted);margin-top:2px;line-height:1.3;">Wide channels and half-spaces to create and finish.</div>
+      </div>
+      <div style="font-size:16px;color:#3DDC84;opacity:0.4;" id="arr-2">▶</div>
+    </div>
+<div onclick="selectVideo(3)" id="item-3"
+      style="display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:6px;cursor:pointer;border:1px solid var(--border);border-left:4px solid #FFD166;background:var(--card);transition:background 0.15s,transform 0.1s;flex:1;"
+      onmouseover="this.style.background='rgba(255,209,102,0.1)';this.style.transform='translateX(3px)'"
+      onmouseout="if(!this.classList.contains('active')){this.style.background='var(--card)';this.style.transform=''}">
+      <div style="width:28px;height:28px;border-radius:50%;background:#FFD166;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;color:#0D1B2A;">4</div>
+      <div style="flex:1;min-width:0;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:14px;color:#FFD166;line-height:1;">Attacking from the Inside</div>
+        <div style="font-size:9px;color:var(--muted);margin-top:2px;line-height:1.3;">Central combinations, runs in behind, and finishing.</div>
+      </div>
+      <div style="font-size:16px;color:#FFD166;opacity:0.4;" id="arr-3">▶</div>
+    </div>
+<div onclick="selectVideo(4)" id="item-4"
+      style="display:flex;align-items:center;gap:10px;padding:9px 14px;border-radius:6px;cursor:pointer;border:1px solid var(--border);border-left:4px solid #C77DFF;background:var(--card);transition:background 0.15s,transform 0.1s;flex:1;"
+      onmouseover="this.style.background='rgba(199,125,255,0.1)';this.style.transform='translateX(3px)'"
+      onmouseout="if(!this.classList.contains('active')){this.style.background='var(--card)';this.style.transform=''}">
+      <div style="width:28px;height:28px;border-radius:50%;background:#C77DFF;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:13px;color:#0D1B2A;">5</div>
+      <div style="flex:1;min-width:0;">
+        <div style="font-family:'Barlow Condensed',sans-serif;font-weight:800;font-size:14px;color:#C77DFF;line-height:1;">Striker Tactics</div>
+        <div style="font-size:9px;color:var(--muted);margin-top:2px;line-height:1.3;">Movement, hold-up play, and how to be a dangerous striker.</div>
+      </div>
+      <div style="font-size:16px;color:#C77DFF;opacity:0.4;" id="arr-4">▶</div>
+    </div>
       </div>
     </div>
 
   </div>
 
   <div class="banner">
-    <div class="bi"><div class="bm" style="color:#4FC3F7">SOCCER BASICS TUTORIAL</div><div class="bs">Fundamentals of move</div></div><div class="bi"><div class="bm" style="color:#FF7043">DEFENSIVE TACTICS</div><div class="bs">Defend as a unit — p</div></div><div class="bi"><div class="bm" style="color:#3DDC84">ATTACKING FROM THE OUTSIDE</div><div class="bs">Wide channels and ha</div></div><div class="bi"><div class="bm" style="color:#FFD166">ATTACKING FROM THE INSIDE</div><div class="bs">Central combinations</div></div><div class="bi"><div class="bm" style="color:#C77DFF">STRIKER TACTICS</div><div class="bs">Movement, hold-up pl</div></div>
+    <div class="bi"><div class="bm" style="color:#4FC3F7">SOCCER BASICS TUTORIAL</div><div class="bs">Fundamentals of moveme</div></div><div class="bi"><div class="bm" style="color:#FF7043">DEFENSIVE TACTICS</div><div class="bs">Defend as a unit — pre</div></div><div class="bi"><div class="bm" style="color:#3DDC84">ATTACKING FROM THE OUTSIDE</div><div class="bs">Wide channels and half</div></div><div class="bi"><div class="bm" style="color:#FFD166">ATTACKING FROM THE INSIDE</div><div class="bs">Central combinations, </div></div><div class="bi"><div class="bm" style="color:#C77DFF">STRIKER TACTICS</div><div class="bs">Movement, hold-up play</div></div>
   </div>
   <div class="footer">INSTRUCTIONAL VIDEOS &nbsp;·&nbsp; COACH STEVEN COOTEY &nbsp;·&nbsp; 5 VIDEOS</div>
 
@@ -132,19 +133,27 @@
 </div>
 
 <script>
-const videos = [('1asAhpB2LUhUvuX5kdLhQJB4w0H8XREhE', 'Soccer Basics Tutorial', 'Fundamentals of movement, positioning, and decision-making.', '#4FC3F7'), ('1Dr3cz9J1R0OBxQA60sAReruAl2tnPuos', 'Defensive Tactics', 'Defend as a unit — pressing, compactness, winning the ball back.', '#FF7043'), ('1RN6DtVRTlvDgSiPF77cTGzz5M0iypNXj', 'Attacking from the Outside', 'Wide channels and half-spaces to create and finish.', '#3DDC84'), ('192UYHn44MbAG6_VxvtwDqajwjZ6l2aja', 'Attacking from the Inside', 'Central combinations, runs in behind, and finishing.', '#FFD166'), ('1AIs2pwNZ7fdtwqzriM0FW3290ITN7X2R', 'Striker Tactics', 'Movement, hold-up play, and how to be a dangerous striker.', '#C77DFF')];
+const videos = [("Leuv3mJxm3Q", "Soccer Basics Tutorial", "Fundamentals of movement, positioning, and decision-making.", "#4FC3F7"), ("X2onoGWIKxw", "Defensive Tactics", "Defend as a unit — pressing, compactness, winning the ball back.", "#FF7043"), ("bjMKoZ4chCE", "Attacking from the Outside", "Wide channels and half-spaces to create and finish.", "#3DDC84"), ("VNCvi_uLs70", "Attacking from the Inside", "Central combinations, runs in behind, and finishing.", "#FFD166"), ("b28iTp8TXp0", "Striker Tactics", "Movement, hold-up play, and how to be a dangerous striker.", "#C77DFF")];
 
 function selectVideo(idx) {
-  const [fid, title, desc, color] = videos[idx];
-  document.getElementById('main-player').src = 'https://drive.google.com/file/d/' + fid + '/preview';
+  const [vid, title, desc, color] = videos[idx];
+  document.getElementById('main-player').src = 'https://www.youtube.com/embed/' + vid + '?rel=0&modestbranding=1&autoplay=1';
   document.getElementById('now-title').textContent = title;
   document.getElementById('now-title').style.color = color;
   document.getElementById('now-desc').textContent = desc;
   document.getElementById('now-dot').style.background = color;
-  document.querySelectorAll('.playlist-item').forEach((el,i) => {
-    el.classList.toggle('active', i === idx);
+  document.querySelectorAll('[id^="item-"]').forEach((el, i) => {
+    el.style.background = i === idx ? '#1a2f45' : 'var(--card)';
+    el.style.borderColor = i === idx ? 'rgba(255,255,255,0.25)' : 'var(--border)';
+    el.style.transform = '';
+    document.getElementById('arr-' + i).style.opacity = i === idx ? '1' : '0.4';
   });
 }
+
+// Set first item active on load
+document.getElementById('item-0').style.background = '#1a2f45';
+document.getElementById('item-0').style.borderColor = 'rgba(255,255,255,0.25)';
+document.getElementById('arr-0').style.opacity = '1';
 </script>
 
 <script>
