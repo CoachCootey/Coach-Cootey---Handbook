@@ -272,28 +272,20 @@
           <div><div class="card-title" style="color:#3DDC84">In Possession</div><div class="card-sub">Help Your Team Attack</div></div>
         </div>
         <div class="divider"></div>
-        <div class="card-body">Create passing lanes by moving into space. Attack defenders to commit them, then lay off. Hold up play to let teammates join. Switch the point of attack to find space on the other side. Make the field as big as possible for the player in possession.</div>
+        <div class="card-body">Create passing lanes by moving into space before the ball arrives — give the carrier an easy option. Attack defenders 1v1 to commit them, then lay off to a teammate in a better position. Hold up play to let teammates join the attack and create numerical advantages. Switch the point of attack quickly to find space on the other side. Make the field as big as possible — width and depth stretch the defense and open gaps for everyone.</div>
         <div class="tags" id="tags-ball"></div>
       </div>
       <div class="card" id="card-noball" onclick="selectZone('noball')">
         <div class="card-header-row">
           <div class="badge" style="background:#4FC3F7">OP</div>
-          <div><div class="card-title" style="color:#4FC3F7">Out of Possession</div><div class="card-sub">Never Stop Working</div></div>
+          <div><div class="card-title" style="color:#4FC3F7">Out of Possession</div><div class="card-sub">Press · Cover · Recover · Defend</div></div>
         </div>
         <div class="divider"></div>
-        <div class="card-body">Spread out to stretch the opposition. Support the ball carrier with angles and distance. Make runs to pull defenders away and open space for teammates. Stay connected to the team shape. There is always somewhere better to be — find it before the ball arrives.</div>
+        <div class="card-body">When possession is lost, react immediately — the first 5 seconds are critical. Get goalside and recover your defensive shape before the opposition can exploit the transition. Press the ball carrier as a unit to force play into predictable areas. Stay connected — gaps between players are what good teams exploit. If you are not the one pressing, cover the space your teammate has vacated. Win the second ball if the press is beaten. Defending is a team effort from front to back — strikers press, midfielders cover, defenders hold the line. Everyone has a role whether they are near the ball or not.</div>
         <div class="tags" id="tags-noball"></div>
       </div>
-      <div class="card" id="card-defend" onclick="selectZone('defend')">
-        <div class="card-header-row">
-          <div class="badge" style="background:#FF7043">TD</div>
-          <div><div class="card-title" style="color:#FF7043">Team Defending</div><div class="card-sub">Everyone Defends Together</div></div>
+      
         </div>
-        <div class="divider"></div>
-        <div class="card-body">Stay goalside when the ball is won. Cover space behind teammates pressing the ball. Stay connected — gaps between players are what the opposition exploit. If you are not pressing, be in a position to win the second ball. Defending is a team effort from front to back.</div>
-        <div class="tags" id="tags-defend"></div>
-      </div>
-    </div>
   </div>
   <div class="tip">
     <span class="tip-label">COACHING TIP</span>
@@ -379,6 +371,8 @@ const tagData = {
   'GOALSIDE':        'Always recover goalside when possession is lost. Get between the ball and your goal first.',
   'SECOND BALL':     'If you are not in the press, position to win the second ball if the press is beaten.',
   'NO WATCHING':     'There is no moment in the game where standing still and watching is the right choice.',
+  'SUPPORT THE BALL': 'Always give the player in possession an easy option. Show for the ball, create the angle, and be ready.',
+  'CREATE OPTIONS':   'The more options the carrier has, the harder it is to defend. Move to give them choices — not just one.',
 };
 
 function buildTags(zone, color, keys, data) {
@@ -400,12 +394,12 @@ function buildTags(zone, color, keys, data) {
   });
 }
 
-buildTags('ball',    '#3DDC84', ['PASSING LANES','SWITCH PLAY','HOLD UP PLAY'], tagData);
-buildTags('noball',  '#4FC3F7', ['SPREAD OUT','PULL DEFENDERS','NO BALL RUNS'], tagData);
+buildTags('ball',    '#3DDC84', ['SUPPORT THE BALL','CREATE OPTIONS','PASSING LANES','SWITCH PLAY','HOLD UP PLAY'], tagData);
+buildTags('noball',  '#4FC3F7', ['STAY CONNECTED','COVER SPACE','GOALSIDE','NO WATCHING','SECOND BALL'], tagData);
 buildTags('defend',  '#FF7043', ['COVER SPACE','GOALSIDE','NO WATCHING'], tagData);
 
 function selectZone(z) {
-  ['ball','noball','defend'].forEach(id => {
+  ['ball','noball'].forEach(id => {
     const card = document.getElementById('card-' + id);
     if (card) card.classList.toggle('active', id === z);
   });
